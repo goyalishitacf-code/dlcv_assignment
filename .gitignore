@@ -1,0 +1,20 @@
+# virtual environment
+venv/
+
+# datasets (VERY IMPORTANT)
+data/
+
+# compressed datasets
+*.tar
+*.gz
+*.zip
+
+# feature storage (can be large)
+*.pkl
+
+# python cache
+__pycache__/
+*.pyc
+
+# system files
+.DS_Store
