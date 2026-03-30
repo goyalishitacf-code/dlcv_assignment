@@ -87,13 +87,13 @@ for name, (imgs, labels, _) in datasets.items():
     feats = extract_cnn_features(imgs, device=DEVICE)
     FEATURE_STORE[name]["cnn"] = feats
 
-# ── 5. Task 4 — Novel (MSFTA) ─────────────────────────────────────────────────
+# ── 5. Task 4 — Novel (mhsav2) ─────────────────────────────────────────────────
 
-from task4_novel import extract_msfta_batch
-print("\n[5/8] Task 4 : Novel MSFTA features ...")
+from task4_novel import extract_mhsa_batch
+print("\n[5/8] Task 4 : Novel mhsav2 features ...")
 for name, (imgs, labels, _) in datasets.items():
-    feats = extract_msfta_batch(imgs)
-    FEATURE_STORE[name]["msfta"] = feats
+    feats = extract_mhsa_batch(imgs)
+    FEATURE_STORE[name]["mhsav2"] = feats
 
 # ── 6. Task 5 — Hybrid ────────────────────────────────────────────────────────
 
@@ -101,7 +101,7 @@ from task5_hybrid import fuse_concat, fuse_weighted, find_optimal_lambda
 print("\n[6/8] Task 5 : Hybrid features ...")
 for name in datasets:
     cnn_f    = FEATURE_STORE[name]["cnn"]
-    novel_f  = FEATURE_STORE[name]["msfta"]
+    novel_f  = FEATURE_STORE[name]["mhsav2"]
     labels   = LABEL_STORE[name]
     print(f"  Dataset: {name}")
     FEATURE_STORE[name]["hybrid_concat"]   = fuse_concat(cnn_f, novel_f)
@@ -128,7 +128,7 @@ METHOD_METRICS = {
     "nn":              "cosine",
     "dnn":             "cosine",
     "cnn":             "cosine",
-    "msfta":           "cosine",
+    "mhsav2":           "cosine",
     "hybrid_concat":   "cosine",
     "hybrid_weighted": "cosine",
     "color":           "cosine",

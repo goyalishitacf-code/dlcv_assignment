@@ -45,7 +45,7 @@ METHOD_LABELS = {
     "nn":              "NN — Task 2",
     "dnn":             "Deep NN — Task 2",
     "cnn":             "CNN ResNet-18 — Task 3",
-    "msfta":           "MSFTA Novel — Task 4",
+    "mhsav2":           "mhsa Novel — Task 4",
     "hybrid_concat":   "Hybrid Concat — Task 5",
     "hybrid_weighted": "Hybrid Weighted — Task 5",
     "color":           "Color Features — Task 6",
@@ -90,8 +90,8 @@ def _get_query_feature(query_arr, dataset, method):
         from task1_lbp import extract_lbp; return extract_lbp(q)
     elif method == "cnn":
         from task3_cnn import extract_cnn_features; return extract_cnn_features(q[None])[0]
-    elif method == "msfta":
-        from task4_novel import extract_msfta; return extract_msfta(q)
+    elif method == "mhsa":
+        from task4_novel import extract_mhsa; return extract_mhsa(q)
     elif method == "color":
         from task6_color import extract_color_full; return extract_color_full(q)
     elif method == "color_lbp":
@@ -104,18 +104,18 @@ def _get_query_feature(query_arr, dataset, method):
         return fuse_color_cnn(extract_color_full(q)[None], extract_cnn_features(q[None]))[0]
     elif method == "hybrid_concat":
         from task3_cnn import extract_cnn_features
-        from task4_novel import extract_msfta
+        from task4_novel import extract_mhsa
         from sklearn.preprocessing import normalize
         return np.concatenate([
             normalize(extract_cnn_features(q[None]), norm="l2")[0],
-            normalize(extract_msfta(q)[None], norm="l2")[0],
+            normalize(extract_mhsa(q)[None], norm="l2")[0],
         ])
     elif method == "hybrid_weighted":
         from task3_cnn import extract_cnn_features
-        from task4_novel import extract_msfta
+        from task4_novel import extract_mhsa
         from sklearn.preprocessing import normalize
         cnn_q = normalize(extract_cnn_features(q[None]), norm="l2")[0]
-        nov_q = normalize(extract_msfta(q)[None], norm="l2")[0]
+        nov_q = normalize(extract_mhsa(q)[None], norm="l2")[0]
         gf = FEATURE_STORE[dataset][method]
         return np.concatenate([cnn_q,nov_q]) if cnn_q.shape[0]!=gf.shape[1] else 0.6*cnn_q+0.4*nov_q
     return None

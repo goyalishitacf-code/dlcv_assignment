@@ -544,9 +544,9 @@ def retrieve_mhsa(query_feat, gallery_feats, top_k=5):
 
 # ── Aliases — your run_all.py and dashboard need ZERO changes ─────────────────
 extract_scg         = extract_mhsa_features
-extract_msfta       = extract_mhsa_features
+extract_mhsa       = extract_mhsa_features
 extract_scg_batch   = extract_mhsa_batch
-extract_msfta_batch = extract_mhsa_batch
+extract_mhsa_batch = extract_mhsa_batch
 
 
 # ── Self-test ──────────────────────────────────────────────────────────────────

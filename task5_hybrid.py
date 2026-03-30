@@ -5,7 +5,7 @@ Task 5 : Hybrid Retrieval Model
 fi = [fCNN || fProposed]          (concatenation)
 fi = λ·fCNN + (1-λ)·fProposed    (weighted sum)
 
-The idea: CNN captures semantic (high-level) cues; MSFTA captures
+The idea: CNN captures semantic (high-level) cues; MHSAv2 captures
 texture/frequency (mid/low-level) cues.  Fusion provides complementary
 information that neither method alone can achieve.
 

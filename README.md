@@ -112,6 +112,13 @@ data/
 
 ## Running Locally
 
+## Setup local environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
 ### Quick Test Run (recommended first)
 
 Runs on 500 images per dataset, 5 epochs — completes in ~5–10 minutes on CPU:
